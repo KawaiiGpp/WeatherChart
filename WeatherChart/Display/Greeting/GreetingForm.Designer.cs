@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panelRoot = new TableLayoutPanel();
             panelOperation = new TableLayoutPanel();
             panelCitySelection = new TableLayoutPanel();
@@ -38,6 +39,7 @@
             btnConfirm = new Button();
             btnAbout = new Button();
             lblClock = new Label();
+            timerClock = new System.Windows.Forms.Timer(components);
             panelRoot.SuspendLayout();
             panelOperation.SuspendLayout();
             panelCitySelection.SuspendLayout();
@@ -174,6 +176,12 @@
             lblClock.TabIndex = 1;
             lblClock.Text = "0000/00/00 00:00:00";
             // 
+            // timerClock
+            // 
+            timerClock.Enabled = true;
+            timerClock.Interval = 500;
+            timerClock.Tick += timerClock_Tick;
+            // 
             // GreetingForm
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
@@ -205,5 +213,6 @@
         private ComboBox cbProvince;
         private ComboBox cbCity;
         private ComboBox cbDistrict;
+        private System.Windows.Forms.Timer timerClock;
     }
 }

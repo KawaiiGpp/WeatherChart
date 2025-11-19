@@ -6,5 +6,10 @@ namespace WeatherChart.Display.Greeting
         {
             InitializeComponent();
         }
+
+        private void timerClock_Tick(object sender, EventArgs e)
+        {
+            lblClock.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        }
     }
 }
