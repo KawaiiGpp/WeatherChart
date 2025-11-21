@@ -193,6 +193,7 @@
             Name = "GreetingForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "天气走势图";
+            Load += GreetingForm_Load;
             panelRoot.ResumeLayout(false);
             panelRoot.PerformLayout();
             panelOperation.ResumeLayout(false);

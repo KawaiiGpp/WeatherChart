@@ -11,5 +11,10 @@ namespace WeatherChart.Display.Greeting
         {
             lblClock.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         }
+
+        private void GreetingForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
