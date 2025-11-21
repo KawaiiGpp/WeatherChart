@@ -1,8 +1,10 @@
-﻿namespace WeatherChart.Feature.AreaSelection
+﻿namespace WeatherChart.Feature.AreaSelection.Abstract
 {
-    public interface IAreaContainer<ChildType> 
+    public interface IAreaContainer<ChildType>
         where ChildType : IArea
     {
-        List<ChildType> 
+        List<ChildType> Children { get; }
+
+        void Register(ChildType child);
     }
 }

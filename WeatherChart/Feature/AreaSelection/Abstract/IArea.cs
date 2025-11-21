@@ -1,7 +1,7 @@
-﻿namespace WeatherChart.Feature.AreaSelection
+﻿namespace WeatherChart.Feature.AreaSelection.Abstract
 {
-    public class IArea(string name)
+    public interface IArea
     {
-        public string Name { get; } = name;
+        string Name { get; }
     }
 }

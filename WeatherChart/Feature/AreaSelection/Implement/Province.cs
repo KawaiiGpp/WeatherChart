@@ -1,8 +1,13 @@
-﻿namespace WeatherChart.Feature.AreaSelection.Implement
+﻿using WeatherChart.Feature.AreaSelection.Abstract;
+using WeatherChart.Util;
+
+namespace WeatherChart.Feature.AreaSelection.Implement
 {
-    public class Province(string name)
+    public class Province(string name) : IArea, IAreaContainer<City>
     {
-        private string Name { get; } = name;
-        private List<>
+        public string Name { get; } = name;
+        public List<City> Children { get; } = [];
+
+        public void Register(City city) => Children.AddUnique(city);
     }
 }

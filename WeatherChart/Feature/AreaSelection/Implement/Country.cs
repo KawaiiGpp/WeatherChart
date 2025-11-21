@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using WeatherChart.Feature.AreaSelection.Abstract;
+﻿using WeatherChart.Feature.AreaSelection.Abstract;
 using WeatherChart.Util;
 
 namespace WeatherChart.Feature.AreaSelection.Implement
