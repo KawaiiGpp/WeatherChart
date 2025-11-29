@@ -2,9 +2,8 @@
 
 namespace WeatherChart.Feature.AreaSelection.Implement
 {
-    public class District(string name, string code) : IArea
+    public class District(string name, string areaCode) : Area(name)
     {
-        public string Name { get; } = name;
-        public string AreaCode { get; } = code;
+        public string AreaCode { get; } = areaCode;
     }
 }

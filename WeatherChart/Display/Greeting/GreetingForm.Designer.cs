@@ -32,11 +32,13 @@
             panelRoot = new TableLayoutPanel();
             panelOperation = new TableLayoutPanel();
             panelCitySelection = new TableLayoutPanel();
+            cbCountry = new ComboBox();
             cbProvince = new ComboBox();
             cbCity = new ComboBox();
             cbDistrict = new ComboBox();
             panelButtons = new TableLayoutPanel();
             btnConfirm = new Button();
+            btnReset = new Button();
             btnAbout = new Button();
             lblClock = new Label();
             timerClock = new System.Windows.Forms.Timer(components);
@@ -58,89 +60,112 @@
             panelRoot.RowCount = 2;
             panelRoot.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             panelRoot.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            panelRoot.Size = new Size(695, 382);
+            panelRoot.Size = new Size(632, 400);
             panelRoot.TabIndex = 0;
             // 
             // panelOperation
             // 
             panelOperation.ColumnCount = 3;
-            panelOperation.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            panelOperation.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            panelOperation.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            panelOperation.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.5F));
+            panelOperation.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            panelOperation.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.5F));
             panelOperation.Controls.Add(panelCitySelection, 1, 1);
             panelOperation.Controls.Add(panelButtons, 1, 2);
             panelOperation.Dock = DockStyle.Fill;
-            panelOperation.Location = new Point(3, 117);
+            panelOperation.Location = new Point(3, 123);
             panelOperation.Name = "panelOperation";
             panelOperation.RowCount = 4;
+            panelOperation.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            panelOperation.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             panelOperation.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             panelOperation.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            panelOperation.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            panelOperation.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            panelOperation.Size = new Size(689, 262);
+            panelOperation.Size = new Size(626, 274);
             panelOperation.TabIndex = 0;
             // 
             // panelCitySelection
             // 
-            panelCitySelection.ColumnCount = 3;
-            panelCitySelection.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
-            panelCitySelection.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.34F));
-            panelCitySelection.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
-            panelCitySelection.Controls.Add(cbProvince, 0, 0);
-            panelCitySelection.Controls.Add(cbCity, 1, 0);
-            panelCitySelection.Controls.Add(cbDistrict, 2, 0);
+            panelCitySelection.ColumnCount = 2;
+            panelCitySelection.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            panelCitySelection.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            panelCitySelection.Controls.Add(cbCountry, 0, 0);
+            panelCitySelection.Controls.Add(cbProvince, 1, 0);
+            panelCitySelection.Controls.Add(cbCity, 0, 1);
+            panelCitySelection.Controls.Add(cbDistrict, 1, 1);
             panelCitySelection.Dock = DockStyle.Fill;
-            panelCitySelection.Location = new Point(140, 68);
+            panelCitySelection.Location = new Point(81, 57);
             panelCitySelection.Name = "panelCitySelection";
-            panelCitySelection.RowCount = 1;
-            panelCitySelection.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            panelCitySelection.Size = new Size(407, 59);
+            panelCitySelection.RowCount = 2;
+            panelCitySelection.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            panelCitySelection.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            panelCitySelection.Size = new Size(463, 76);
             panelCitySelection.TabIndex = 0;
+            // 
+            // cbCountry
+            // 
+            cbCountry.Dock = DockStyle.Fill;
+            cbCountry.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbCountry.Font = new Font("Microsoft YaHei UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            cbCountry.FormattingEnabled = true;
+            cbCountry.IntegralHeight = false;
+            cbCountry.Location = new Point(3, 3);
+            cbCountry.Name = "cbCountry";
+            cbCountry.Size = new Size(225, 33);
+            cbCountry.TabIndex = 0;
+            cbCountry.SelectedIndexChanged += cbCountry_SelectedIndexChanged;
             // 
             // cbProvince
             // 
             cbProvince.Dock = DockStyle.Fill;
             cbProvince.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbProvince.Font = new Font("Microsoft YaHei UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
             cbProvince.FormattingEnabled = true;
-            cbProvince.Location = new Point(3, 3);
+            cbProvince.IntegralHeight = false;
+            cbProvince.Location = new Point(234, 3);
             cbProvince.Name = "cbProvince";
-            cbProvince.Size = new Size(129, 33);
-            cbProvince.TabIndex = 0;
+            cbProvince.Size = new Size(226, 33);
+            cbProvince.TabIndex = 1;
+            cbProvince.SelectedIndexChanged += cbProvince_SelectedIndexChanged;
             // 
             // cbCity
             // 
             cbCity.Dock = DockStyle.Fill;
             cbCity.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbCity.Font = new Font("Microsoft YaHei UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
             cbCity.FormattingEnabled = true;
-            cbCity.Location = new Point(138, 3);
+            cbCity.IntegralHeight = false;
+            cbCity.Location = new Point(3, 41);
             cbCity.Name = "cbCity";
-            cbCity.Size = new Size(129, 33);
-            cbCity.TabIndex = 1;
+            cbCity.Size = new Size(225, 33);
+            cbCity.TabIndex = 2;
+            cbCity.SelectedIndexChanged += cbCity_SelectedIndexChanged;
             // 
             // cbDistrict
             // 
             cbDistrict.Dock = DockStyle.Fill;
             cbDistrict.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbDistrict.Font = new Font("Microsoft YaHei UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
             cbDistrict.FormattingEnabled = true;
-            cbDistrict.Location = new Point(273, 3);
+            cbDistrict.IntegralHeight = false;
+            cbDistrict.Location = new Point(234, 41);
             cbDistrict.Name = "cbDistrict";
-            cbDistrict.Size = new Size(131, 33);
-            cbDistrict.TabIndex = 2;
+            cbDistrict.Size = new Size(226, 33);
+            cbDistrict.TabIndex = 3;
             // 
             // panelButtons
             // 
-            panelButtons.ColumnCount = 2;
-            panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            panelButtons.ColumnCount = 3;
+            panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.34F));
+            panelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
             panelButtons.Controls.Add(btnConfirm, 0, 0);
-            panelButtons.Controls.Add(btnAbout, 1, 0);
+            panelButtons.Controls.Add(btnReset, 1, 0);
+            panelButtons.Controls.Add(btnAbout, 2, 0);
             panelButtons.Dock = DockStyle.Fill;
-            panelButtons.Location = new Point(140, 133);
+            panelButtons.Location = new Point(81, 139);
             panelButtons.Name = "panelButtons";
             panelButtons.RowCount = 1;
-            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            panelButtons.Size = new Size(407, 59);
+            panelButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            panelButtons.Size = new Size(463, 62);
             panelButtons.TabIndex = 1;
             // 
             // btnConfirm
@@ -149,19 +174,32 @@
             btnConfirm.Location = new Point(2, 7);
             btnConfirm.Margin = new Padding(2, 7, 2, 7);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(199, 45);
+            btnConfirm.Size = new Size(150, 48);
             btnConfirm.TabIndex = 0;
             btnConfirm.Text = "拉取数据";
             btnConfirm.UseVisualStyleBackColor = true;
+            btnConfirm.Click += btnConfirm_Click;
+            // 
+            // btnReset
+            // 
+            btnReset.Dock = DockStyle.Fill;
+            btnReset.Location = new Point(156, 7);
+            btnReset.Margin = new Padding(2, 7, 2, 7);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(150, 48);
+            btnReset.TabIndex = 1;
+            btnReset.Text = "重置选中";
+            btnReset.UseVisualStyleBackColor = true;
+            btnReset.Click += btnReset_Click;
             // 
             // btnAbout
             // 
             btnAbout.Dock = DockStyle.Fill;
-            btnAbout.Location = new Point(205, 7);
+            btnAbout.Location = new Point(310, 7);
             btnAbout.Margin = new Padding(2, 7, 2, 7);
             btnAbout.Name = "btnAbout";
-            btnAbout.Size = new Size(200, 45);
-            btnAbout.TabIndex = 1;
+            btnAbout.Size = new Size(151, 48);
+            btnAbout.TabIndex = 2;
             btnAbout.Text = "关于软件";
             btnAbout.UseVisualStyleBackColor = true;
             // 
@@ -170,7 +208,7 @@
             lblClock.Anchor = AnchorStyles.Bottom;
             lblClock.AutoSize = true;
             lblClock.Font = new Font("Microsoft YaHei UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 134);
-            lblClock.Location = new Point(151, 68);
+            lblClock.Location = new Point(120, 74);
             lblClock.Name = "lblClock";
             lblClock.Size = new Size(392, 46);
             lblClock.TabIndex = 1;
@@ -186,7 +224,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(695, 382);
+            ClientSize = new Size(632, 400);
             Controls.Add(panelRoot);
             Font = new Font("Microsoft YaHei UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
             Margin = new Padding(5, 4, 5, 4);
@@ -209,11 +247,13 @@
         private TableLayoutPanel panelCitySelection;
         private TableLayoutPanel panelButtons;
         private Button btnConfirm;
-        private Button btnAbout;
+        private Button btnReset;
         private Label lblClock;
+        private ComboBox cbCountry;
         private ComboBox cbProvince;
         private ComboBox cbCity;
-        private ComboBox cbDistrict;
         private System.Windows.Forms.Timer timerClock;
+        private ComboBox cbDistrict;
+        private Button btnAbout;
     }
 }
