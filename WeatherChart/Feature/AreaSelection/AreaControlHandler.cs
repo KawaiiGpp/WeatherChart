@@ -26,57 +26,63 @@ namespace WeatherChart.Feature.AreaSelection
 
         public void ClearAll()
         {
-            country.Items.Clear();
-            province.Items.Clear();
-            city.Items.Clear();
-            district.Items.Clear();
+            Clear(country, province, city, district);
         }
 
         public void UpdateCountry()
         {
-            province.Items.Clear();
-            city.Items.Clear();
-            district.Items.Clear();
+            Clear(province, city, district);
 
-            if (SelectedCountry == null) return;
-            InitList(province, SelectedCountry.Children);
+            if (SelectedCountry != null)
+            {
+                InitList(province, SelectedCountry.Children);
+            }
         }
 
         public void UpdateProvince()
         {
-            city.Items.Clear();
-            district.Items.Clear();
+            Clear(city, district);
 
-            if (SelectedProvince == null) return;
-            InitList(city, SelectedProvince.Children);
+            if (SelectedProvince != null)
+            {
+                InitList(city, SelectedProvince.Children);
+            }
         }
 
         public void UpdateCity()
         {
-            district.Items.Clear();
+            Clear(district);
 
-            if (SelectedCity == null) return;
-            InitList(district, SelectedCity.Children);
+            if (SelectedCity != null)
+            {
+                InitList(district, SelectedCity.Children);
+            }
         }
 
         private T? GetSelectedItem<T>(ComboBox control)
             where T : Area
         {
-            if (control.SelectedItem == null)
-                return null;
-            if (control.SelectedIndex == -1)
-                return null;
-
-            return (T)control.SelectedItem;
+            if (control.SelectedItem == null) return null;
+            else return (T)control.SelectedItem;
         }
 
         private void InitList<T>(ComboBox control, IEnumerable<T> children)
             where T : Area
         {
+            Clear(control);
+
             foreach (var child in children)
-            {
                 control.Items.Add(child);
-                control.DisplayMember = "Name";
+
+            control.DisplayMember = nameof(Area.Name);
+        }
+
+        private void Clear(params ComboBox[] boxes)
+        {
+            foreach (var box in boxes)
+            {
+                box.Items.Clear();
+                box.SelectedIndex = -1;
             }
         }
     }
