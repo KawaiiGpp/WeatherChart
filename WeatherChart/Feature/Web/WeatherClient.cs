@@ -1,24 +1,35 @@
 ﻿namespace WeatherChart.Feature.Web
 {
-    public class WeatherClient : IDisposable
+    public abstract class WeatherClient : IDisposable
     {
-        private readonly string url;
         private readonly HttpClient client;
         private bool disposed = false;
 
-        public WeatherClient(string url, string token)
+        public WeatherClient()
         {
-            this.url = url;
+            var token = EnvironmentMaster.Instance.Token;
 
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("X-APISpace-Token", token);
         }
 
-        //public async Task<WeatherResponse> Get(string code)
-        //{
-        //    ObjectDisposedException.ThrowIf(disposed, this);
+        public async Task<WeatherResponse> Get(string code)
+        {
+            ObjectDisposedException.ThrowIf(disposed, this);
 
-        //}
+            try
+            {
+                var response = await client.GetAsync(GetUrl(code));
+                response.EnsureSuccessStatusCode();
+
+                var content = await response.Content.ReadAsStringAsync();
+                return WeatherResponse.Success(content);
+            }
+            catch (Exception exception)
+            {
+                return WeatherResponse.Failure(exception);
+            }
+        }
 
         public void Dispose()
         {
@@ -28,5 +39,7 @@
             disposed = true;
             GC.SuppressFinalize(this);
         }
+
+        protected abstract string GetUrl(string code);
     }
 }
