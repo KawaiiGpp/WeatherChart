@@ -1,15 +1,19 @@
 using WeatherChart.Feature.AreaSelection;
+using WeatherChart.Feature.Web;
 
 namespace WeatherChart.Display.Greeting
 {
     public partial class GreetingForm : Form
     {
         private readonly AreaControlHandler controlHandler;
+        private readonly ForecastClient client;
 
         public GreetingForm()
         {
             InitializeComponent();
+
             controlHandler = new(cbCountry, cbProvince, cbCity, cbDistrict);
+            client = new();
         }
 
         private void timerClock_Tick(object sender, EventArgs e)
@@ -43,9 +47,33 @@ namespace WeatherChart.Display.Greeting
             controlHandler.UpdateCity();
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private async void btnConfirm_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(controlHandler.SelectedDistrict?.AreaCode ?? "无法显示");
+            try
+            {
+                var code = controlHandler.SelectedDistrict?.AreaCode;
+
+                if (code == null)
+                {
+                    MessageBox.Show("查询天气需要选择一个地区。", "错误");
+                    return;
+                }
+
+                var content = await client.Get(code);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"拉取数据失败，错误如下：\n{exception.Message}", "错误");
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) 
+                client.Dispose();
+
+            base.Dispose(disposing);
         }
     }
 }
